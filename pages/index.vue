@@ -1,13 +1,16 @@
 <template>
 	<div class="data-sheets">
 		<h1 class="text-2xl lg:text-3xl font-bold mt-4 mb-6 text-center">Fichas Técnicas</h1>
-		<input
-			v-model="searchQuery"
-			type="search"
-			autocomplete="off"
-			placeholder="Buscar fichas"
-			class="w-full p-4 mb-6 shadow-fb rounded text-lg font-bold focus:outline-none"
-			/>
+		<div class="search-container mb-6 flex flex-col justify-center items-center">
+			<input
+				v-model="searchQuery"
+				type="search"
+				autocomplete="off"
+				placeholder="Buscar fichas"
+				class="w-full p-4 mb-6 shadow-fb rounded text-lg font-bold focus:outline-none"
+				/>
+			<span class="text-center font-bold" v-if="articles.length === 0">No se encontraron fichas técnicas :/</span>
+		</div>
 		<div class="grid lg:grid-cols-2 gap-10 mb-6">
 			<NuxtLink class="max-w-sm w-full lg:max-w-full lg:flex shadow-fb rounded card-sheet" v-for="article of articles" :key="article.slug" :to="{ name: 'fichas-slug', params: { slug: article.slug } }">
 				<div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" :style="{ backgroundImage: `url(${article.img})`}" :title="article.alt"></div>
