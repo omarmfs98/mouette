@@ -2,7 +2,6 @@ const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   theme: {
-    darkSelector: '.dark-mode',
     extend: {
       boxShadow: {
         "fb": "0 1px 2px rgba(0, 0, 0, 0.2)",
@@ -10,18 +9,13 @@ module.exports = {
       }
     }
   },
-  variants: {
-    backgroundColor: ['dark', 'dark-hover', 'dark-group-hover', 'dark-even', 'dark-odd', 'hover', 'responsive'],
-    borderColor: ['dark', 'dark-focus', 'dark-focus-within', 'hover', 'responsive'],
-    textColor: ['dark', 'dark-hover', 'dark-active', 'hover', 'responsive']
-  },
+  variants: {},
   plugins: [
     plugin(function ({ addBase, config }) {
       addBase({
         'body': { backgroundColor: config('theme.colors.gray.100') },
       })
-    }),
-    require('tailwindcss-dark-mode')()
+    })
   ],
   purge: {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
@@ -29,7 +23,6 @@ module.exports = {
     content: [
       'components/**/*.vue',
       'layouts/**/*.vue',
-      'pages/**/*.vue',
       'plugins/**/*.js',
       'nuxt.config.js'
     ]
